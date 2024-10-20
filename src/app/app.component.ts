@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { LANG, TranslationService } from './core/services/translation.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  template: ` <router-outlet></router-outlet>`,
 })
 export class AppComponent {
   title = 'linkDevWorkshop';
+  private translation = inject(TranslateService);
+  private language = inject(TranslationService);
+
+  ngOnInit(): void {
+    this.language.setLanguage(LANG.EN);
+    this.translation.onLangChange.subscribe((event: LangChangeEvent) => {
+      // we can change layout depended on language
+    });
+  }
 }
