@@ -50,13 +50,14 @@
             >
               {{ returnCategory(new.categoryID) }}
             </div>
-            <div class="my-auto text-[#0ECEFF]">
+            <div class="my-auto">
               <button mat-icon-button (click)="handleMyFav(new.id)">
-                <mat-icon class="transition duration-700 ease-in-out">{{
-                  changeIcon(new.id)
-                }}</mat-icon>
+                <mat-icon
+                  class="transition duration-700 ease-in-out !text-[#0ECEFF]"
+                  >{{ changeIcon(new.id) }}</mat-icon
+                >
               </button>
-              <button mat-icon-button>
+              <button mat-icon-button class="!text-[#0ECEFF]">
                 <mat-icon>share</mat-icon>
               </button>
             </div>
