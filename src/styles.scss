@@ -5,3 +5,6 @@
 .mat-mdc-icon-button .mat-mdc-button-persistent-ripple {
   display: none;
 }
+.animate-spin {
+  animation: spin 4s linear infinite;
+}
