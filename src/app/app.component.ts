@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { LANG, TranslationService } from './core/services/translation.service';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   private language = inject(TranslationService);
 
   ngOnInit(): void {
+    initFlowbite();
     this.language.setLanguage(LANG.EN);
     this.translation.onLangChange.subscribe((event: LangChangeEvent) => {
       // we can change layout depended on language
