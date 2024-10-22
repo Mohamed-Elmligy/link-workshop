@@ -17,7 +17,6 @@ export const routes: Routes = [
   //   },
   {
     path: 'main',
-    title: 'Home page',
     loadComponent: () => import('./layouts/main-layout/main-layout.component'),
     loadChildren: () => import('./modules/main/main.routes'),
     // canMatch: [mainModuleGuard], if we have auth cycle

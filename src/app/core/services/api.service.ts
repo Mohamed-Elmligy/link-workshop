@@ -10,7 +10,7 @@ import { removeFalseValues } from '../utils/data-formatting';
 export class ApiService {
   private HTTP = inject(HttpClient);
 
-  getData<TResponse extends object>(
+  getData(
     baseURL: string,
     pagination?: Partial<PageEvent>,
     filter?: any,
@@ -19,34 +19,30 @@ export class ApiService {
     if (filter) {
       filter = removeFalseValues;
     }
-    return this.HTTP.get<TResponse>(baseURL, {
+    return this.HTTP.get(baseURL, {
       params: { ...pagination, ...filter },
       responseType,
     });
   }
 
-  getDataById<TResponse extends object>(baseURL: string, id: number) {
-    return this.HTTP.get<TResponse>(baseURL + id);
+  getDataById(baseURL: string, name: string, id: string) {
+    return this.HTTP.get(baseURL + '/' + name + '/' + id);
   }
 
-  sendData<TResponse extends object, TBody extends object>(
-    baseURL: string,
-    model: TBody,
-    id?: string
-  ) {
-    return this.HTTP.post<TResponse>(id ? baseURL + id : baseURL, model);
+  sendData(baseURL: string, model: unknown, id?: string) {
+    return this.HTTP.post(id ? baseURL + id : baseURL, model);
   }
 
-  updateData<TResponse extends object, TBody extends object>(
+  updateData(
     method: 'put' | 'patch',
     baseURL: string,
-    model: TBody,
+    model: unknown,
     id?: string
   ) {
-    return this.HTTP[method]<TResponse>(id ? baseURL + id : baseURL, model);
+    return this.HTTP[method](id ? baseURL + id : baseURL, model);
   }
 
-  deleteData<TResponse extends object>(baseURL: string, id: string) {
-    return this.HTTP.delete<TResponse>(baseURL + id);
+  deleteData(baseURL: string, id: string) {
+    return this.HTTP.delete(baseURL + id);
   }
 }

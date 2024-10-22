@@ -7,10 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 export const MultiTranslateLoader = (
   http: HttpBackend
 ): MultiTranslateHttpLoader =>
-  new MultiTranslateHttpLoader(http, [
-    '../../../assets/i18n/main/',
-    '../../../assets/i18n/',
-  ]);
+  new MultiTranslateHttpLoader(http, ['../../../assets/i18n/']);
 
 @Injectable({
   providedIn: 'root',
