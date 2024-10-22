@@ -25,8 +25,8 @@ export class ApiService {
     });
   }
 
-  getDataById(baseURL: string, id: number) {
-    return this.HTTP.get(baseURL + id);
+  getDataById(baseURL: string, name: string, id: string) {
+    return this.HTTP.get(baseURL + '/' + name + '/' + id);
   }
 
   sendData(baseURL: string, model: unknown, id?: string) {

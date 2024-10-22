@@ -11,6 +11,7 @@
     @for (category of newsCategory(); track $index) {
     <button
       type="button"
+      (click)="selectedCategory(category.name, category.id)"
       class="w-[726] h-[41] text-[#0F526E] bg-[#E3E3E3] hover:bg-[#0ECEFF] hover:text-white transition duration-700 ease-in-out focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
     >
       {{ category.name }}
@@ -19,8 +20,8 @@
   </div>
   <div class="flex flex-row align-baseline justify-around">
     <div class="my-3 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-      @for (new of newsData(); track $index) { @if (new.showOnHomepage == "yes")
-      {
+      @for (new of handleNumberOfNews(); track $index) { @if (new.showOnHomepage
+      == "yes") {
       <div
         class="col-span-1 shadow-xl bg-white border border-gray-200 rounded-2xl mx-7 my-6 w-[360px] h-[530px]"
       >
@@ -45,13 +46,19 @@
           </div>
           <div class="flex flex-row align-baseline justify-between mb-3">
             <div
-              class="bg-gray-100 text-gray-800 text-xs h-max font-medium me-2 px-2.5 py-0.5 rounded-full my-auto"
+              class="bg-gray-100 text-gray-800 text-sm h-max font-medium me-2 px-2.5 py-0.5 rounded-full my-auto"
             >
-              Dark
+              {{ returnCategory(new.categoryID) }}
             </div>
-            <div class="my-auto">
-              <mat-icon>favorite_border</mat-icon>
-              <mat-icon>share</mat-icon>
+            <div class="my-auto text-[#0ECEFF]">
+              <button mat-icon-button (click)="handleMyFav(new.id)">
+                <mat-icon class="transition duration-700 ease-in-out">{{
+                  changeIcon(new.id)
+                }}</mat-icon>
+              </button>
+              <button mat-icon-button>
+                <mat-icon>share</mat-icon>
+              </button>
             </div>
           </div>
         </div>
@@ -59,4 +66,15 @@
       } }
     </div>
   </div>
+  @if (!showAll()) {
+  <div class="mx-auto w-full">
+    <button
+      (click)="showAllNews()"
+      type="button"
+      class="focus:outline-none rounded-lg text-sm px-5 py-2.5 me-2 mb-2 w-[266] h-[60] bg-[#FF7C16] text-white"
+    >
+      View All News
+    </button>
+  </div>
+  }
 </section>
