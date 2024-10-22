@@ -1,0 +1,10 @@
+<div id="default-carousel" class="relative w-full" data-carousel="slide">
+  <!-- Carousel wrapper -->
+  <div class="relative z-20 overflow-hidden rounded-lg md:h-[500px]">
+    @for (hero of bannerData; track $index) {
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <app-hero-section [heroData]="hero" />
+    </div>
+    }
+  </div>
+</div>
